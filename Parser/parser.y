@@ -19,8 +19,9 @@
     int while_layer[LOOP_DEPTH]; // WHILE LABEL
     int if_depth = 0; // WHILE LABEL
     int if_layer[LOOP_DEPTH]; // WHILE LABEL
-    int args = 1; // FUNCTION ARGUMENTS COUNTER
-    int sq_arg = 0; // ARRAY DIM INDEX
+    int args = 1; // FUNCTION ARGUMENTS COUNTE
+    int sq_arg = 0; // ARRAY DIM INDEXR
+    int sq_mem = 0; // ARRAY DIM INDEX
     int sq_subarg = 0; // ARRAY DIM INDEX
     int sq_mul = 0; // ARRAY DIM PRODUCT
     unsigned sq_size; // ARRAY SIZE
@@ -148,7 +149,7 @@ program
             printf("add s11, tp, gp\n"); //update child's beginig  
             printf("jal main\n");
             printf("end: nop\n");
-            //print_symtab(&head);
+            // print_symtab(&head);
         }
     ;
 /*  LIST OF FUNCTIONS  */
@@ -350,7 +351,6 @@ variable_decl
             if(tab_type == VOID){
                 printf("ERROR: DECL DEF ISSUE: parameter '%s' can not be of VOID type\n",tab_name);
             }
-            set_pointer(&head, tab_ind);
             set_dimension(&head, tab_ind, $2, sq_size);
         }
     | _STAR _ID array_member_definition {
@@ -559,12 +559,16 @@ data
 /* STORE IN a LOCATION */
 /* TO DO -- BE CAREFULL WITH function_call: MUSN'T BE VOID*/
 array_member
-    : array_member _LSQBRACK num_exp _RSQBRACK {
-            printf("add a%d, t1, x0\n", sq_arg);
-            sq_arg++;
+    : /* empty */
+    | array_mem
+    ;
+array_mem
+    : array_mem _LSQBRACK num_exp _RSQBRACK {
+            printf("add a%d, t1, x0\n", sq_mem++);
         }
-    | /*empty*/ {
-            sq_arg = 0;
+    | _LSQBRACK num_exp _RSQBRACK {
+            sq_mem = 0;
+            printf("add a%d, t1, x0\n", sq_mem++);
         }
     ;
 /*  ARITHMETICAL OPERATIONS  */

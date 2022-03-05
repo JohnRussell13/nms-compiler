@@ -8,9 +8,12 @@ clean:
 	rm -f $(ODIR)/*.o parser res.txt lex.yy.c parser.tab.h parser.tab.c results/*
 
 run:
+	./parser < ./../"Test Codes"/array_matrix.c > results/array_matrix.txt
+	./parser < ./../"Test Codes"/array.c > results/array.txt
 	./parser < ./../"Test Codes"/expressions.c > results/expressions.txt
 	./parser < ./../"Test Codes"/function.c > results/function.txt
 	./parser < ./../"Test Codes"/if_loops.c > results/if_loops.txt
+	./parser < ./../"Test Codes"/matrix.c > results/matrix.txt
 	./parser < ./../"Test Codes"/nested_expressions.c > results/nested_expressions.txt
 	./parser < ./../"Test Codes"/nested_functions.c > results/nested_functions.txt
 	./parser < ./../"Test Codes"/nested_if.c > results/nested_if.txt
@@ -23,4 +26,4 @@ test: parser.y lexer.l
 	flex lexer.l
 	bison -d parser.y
 	gcc parser.tab.c symtab.c lex.yy.c -o parser
-	./parser < ./../"Test Codes"/test0.c > res.txt
+	./parser < ./../"Test Codes"/test.c > res.txt
