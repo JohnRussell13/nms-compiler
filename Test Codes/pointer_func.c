@@ -1,8 +1,9 @@
-void ptr(int *x){
-    *x = 4;
+void ptr(int *a){
+    *a = 4;
 }
 
 int main(){
+    int a;
     int x;
 
     x = 5;

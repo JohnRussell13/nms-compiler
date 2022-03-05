@@ -1,7 +1,7 @@
 parser: parser.y lexer.l
 		flex lexer.l
 		bison -d parser.y
-		gcc parser.tab.c symtab.c lex.yy.c -o parser
+		gcc parser.tab.c symtab.c stack.c lex.yy.c -o parser
 
 .PHONY: clean
 clean:
@@ -19,11 +19,13 @@ run:
 	./parser < ./../"Test Codes"/nested_if.c > results/nested_if.txt
 	./parser < ./../"Test Codes"/nested_loops.c > results/nested_loops.txt
 	./parser < ./../"Test Codes"/pointer_func.c > results/pointer_func.txt
+	./parser < ./../"Test Codes"/pointers_array.c > results/pointers_array.txt
+	./parser < ./../"Test Codes"/pointers.c > results/pointers.txt
 	./parser < ./../"Test Codes"/recursion.c > results/recursion.txt
 
 test: parser.y lexer.l
 	rm -f $(ODIR)/*.o parser res.txt lex.yy.c parser.tab.h parser.tab.c
 	flex lexer.l
 	bison -d parser.y
-	gcc parser.tab.c symtab.c lex.yy.c -o parser
+	gcc parser.tab.c symtab.c stack.c lex.yy.c -o parser
 	./parser < ./../"Test Codes"/test.c > res.txt
