@@ -1,0 +1,15 @@
+//TEST ALU OPS
+
+int main(){
+    int x;
+    int z0;
+    int w;
+    int q;
+    int t;
+    int a;
+    int b;
+
+
+    x = 2;
+    //return 0;
+}

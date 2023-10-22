@@ -1,0 +1,3 @@
+flex try.flex
+gcc lex.yy.c
+./a.out < code.txt
